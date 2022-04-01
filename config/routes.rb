@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :items 
   resources :orders 
   
+  patch 'toggle_feature', to: 'items#toggle_feature', as: :toggle_feature 
+  patch 'toggle_active', to: 'items#toggle_active', as: :toggle_active 
+
   
   
 
