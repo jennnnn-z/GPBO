@@ -1,17 +1,19 @@
 # module Api::V1
   class ItemsController < ApplicationController
     before_action :set_item, only: [:show, :edit, :update, :destroy, :toggle_active, :toggle_feature]
-    before_action :check_login
+    before_action :check_login, except: :index
     authorize_resource
 
     def index  
-      @categories = Item.alphabetical
-      @featured_items = Item.featured 
-      @other_items = Item.where(is_featured: false)
-      if !@category.nil? 
-        @categories = Item.for_category(@category).alphabetical
-        @featured_items = Item.for_category(@category).featured 
-        @other_items = Item.for_category(@category).where(is_featured: false)
+      if params[:category].present?
+        cat = Category.find(params[:category])
+        @categories = Item.for_category(cat).alphabetical
+        @featured_items = Item.for_category(cat).featured 
+        @other_items = Item.for_category(cat).where(is_featured: false)
+      else 
+        @categories = Item.alphabetical
+        @featured_items = Item.featured 
+        @other_items = Item.where(is_featured: false)
       end
     end
 
