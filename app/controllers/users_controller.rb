@@ -1,32 +1,29 @@
 # module Api::V1
   class UsersController < ApplicationController
-    before_action :set_user, only: [ :edit, :update]
+    before_action :set_user, only: [:show, :edit, :update]
     before_action :check_login 
     authorize_resource
 
     def index 
+      # @users = User.all
       @employees = User.employees
     end
 
     def new 
       @user = User.new 
-
     end
 
-    def create 
+    def create
       @user = User.new(user_params)
-      # @user.role = 
-      if @user.save 
-        flash[:notice] = "Successfully added #{@user.proper_name} as a user."
+      if @user.save
+        flash[:notice] = "Successfully added #{@user.username} as a user."
         redirect_to users_path
-      else 
-        render action: 'new' 
+      else
+        render action: 'new'
       end
-    end    
+    end
     
     def edit 
-      # @user.role = ""
-
     end
 
     def update 
@@ -53,7 +50,7 @@
       end
 
       def user_params 
-        params.require(:user).permit(:username, :password_digest, :greeting, :role, :active)
+        params.require(:user).permit(:username, :password, :password_confirmation, :greeting, :role, :active)
       end
   end
 # end

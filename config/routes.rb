@@ -16,16 +16,19 @@ Rails.application.routes.draw do
   resources :sessions 
   resources :users, except: [:show, :destroy]
 
+  get 'users/new', to: 'users#new', as: :signup
+  get 'user/edit', to: 'users#edit', as: :edit_current_user
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
-  resources :customers 
-  resources :categories 
+  resources :customers
+  resources :categories, except: [:show, :destroy] 
+  resources :addresses 
   resources :items 
   resources :orders 
   
-  patch 'toggle_feature', to: 'items#toggle_feature', as: :toggle_feature 
-  patch 'toggle_active', to: 'items#toggle_active', as: :toggle_active 
+  patch '/items/:id/toggle_feature', to: 'items#toggle_feature', as: :toggle_feature 
+  patch '/items/:id/toggle_active', to: 'items#toggle_active', as: :toggle_active 
 
   
   

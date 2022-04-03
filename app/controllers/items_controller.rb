@@ -34,10 +34,14 @@
     end
 
     def toggle_feature 
-      @item.is_featured = !@item.is_featured 
-      if !@item.is_featured 
-        flash[:notice] = "#{@item.name} is no long featured"
+      # @item.is_featured = !@item.is_featured 
+      if @item.is_featured == true
+        @item.update_attributes(:is_featured => false)
+        redirect_to item_path
+        flash[:notice] = "#{@item.name} is no longer featured"
       else 
+        @item.update_attributes(:is_featured => true)        
+        redirect_to item_path
         flash[:notice] = "#{@item.name} is now featured"
       end
     end
