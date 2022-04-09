@@ -35,7 +35,7 @@ Rails.application.routes.draw do
   post 'item_prices', to: 'item_prices#create', as: :item_prices
 
   # get 'search/show', to: 'search#show', as: :search 
-  get 'items/search', to: 'items#search', as: :search
+  get 'search', to: 'search#index', as: :search
 
   # resources :cart
   get 'cart/show', to: 'cart#show', as: :view_cart
@@ -44,8 +44,8 @@ Rails.application.routes.draw do
   get 'cart/empty_cart', to: 'cart#empty_cart', as: :empty_cart
   get 'checkout', to: 'cart#checkout', as: :checkout 
   
-  patch '/items/:id/toggle_feature', to: 'items#toggle_feature', as: :toggle_feature 
-  patch '/items/:id/toggle_active', to: 'items#toggle_active', as: :toggle_active 
+  patch 'items/:id/toggle_feature', to: 'items#toggle_feature', as: :toggle_feature 
+  patch 'items/:id/toggle_active', to: 'items#toggle_active', as: :toggle_active 
 
   # get '/orders/:id/checkout', to: 'orders#checkout', as: :checkout 
   
