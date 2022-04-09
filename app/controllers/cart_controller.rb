@@ -41,7 +41,7 @@ class CartController < ApplicationController
     @subtotal = calculate_cart_items_cost
     @shipping_cost = calculate_cart_shipping
     @total = calculate_cart_items_cost + calculate_cart_shipping
-    @addresses = 
+    @addresses = Address.where(customer: current_user.customer_id)
     @order = Order.new 
   end
 
