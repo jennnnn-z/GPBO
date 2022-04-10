@@ -29,7 +29,8 @@ Rails.application.routes.draw do
   resources :categories, except: [:show, :destroy] 
   resources :addresses 
   resources :items 
-  resources :orders 
+  resources :orders
+  # get 'orders/:id/edit', to: 'orders#edit', as: :edit_order
 
   get 'item_prices/new', to: 'item_prices#new', as: :new_item_price
   post 'item_prices', to: 'item_prices#create', as: :item_prices
@@ -49,6 +50,6 @@ Rails.application.routes.draw do
 
   # get '/orders/:id/checkout', to: 'orders#checkout', as: :checkout 
   
-  # root 'home#index'
+  root 'home#index'
 
 end

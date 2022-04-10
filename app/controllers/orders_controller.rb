@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
   # include AppHelpers::Cart
   # include AppHelpers::Shipping
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-  # before_action :check_login, except: :show
-  # authorize_resource 
+  before_action :check_login
+  authorize_resource 
 
   def index 
     @pending_orders = Order.where(payment_receipt: nil)
@@ -25,44 +25,20 @@ class OrdersController < ApplicationController
   end
 
   def create 
-    
     @order = Order.new(order_params)
-    @credit_card = CreditCard.new(params[:credit_card_number], params[:expiration_year], params[:expiration_month])
-    # if !@order.save 
-      if !@credit_card.valid? 
-        redirect_to order_path(@order.id) 
-        flash[:notice] = "redirected to checkout"
-        
-      else 
-        flash[:notice] = "beep beep"
-        redirect_to checkout_path
-      end
-    # else 
-      # flash[:notice] = "creating order"
-      # redirect_to order_path(Order.last)
-    # end
-    
-    # if !@credit_card.valid?
-    #   # flash[:notice] = @order.errors
-    #   redirect_to checkout_path
-    # else 
-    #   render action: 'new'
-    # end
-
-    # @order = Order.new(order_params)
-    # if !@order.save 
-    #   if !@order.valid? 
-    #     flash[:notice] = "WHY"
-    #     # flash[:notice] = "bad credit"
-    #     redirect_to checkout_path 
-    #   else 
-        
-    #     render action: 'new' 
-    #   end 
-    # else 
-    #   flash[:notice] = "Thank you for ordering from GBPO."
-    #   redirect_to order_path(@order)
-    # end
+    @order.date = Date.current
+    @order.products_total = 0
+    # @order.update(tax: 0)
+    @order.shipping = 0
+    # @order.payment_receipt = ''
+    # @credit_card = CreditCard.new(params[:credit_card_number], params[:expiration_year], params[:expiration_month])
+    if @order.save 
+      flash[:notice] = "Thank you for ordering from GPBO."
+      redirect_to order_path(@order)
+    else 
+      redirect_to checkout_path
+      # render action: 'new' 
+    end
   end
 
   # def checkout 
