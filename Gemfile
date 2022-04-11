@@ -45,7 +45,7 @@ gem 'jquery-ui-rails'
 gem 'cancancan', '3.1.0'   # '3.1.0'
 
 # View gems
-gem 'will_paginate', '3.1.6'
+gem 'will_paginate'
 gem 'simple_form', '5.1.0'
 gem 'materialize-form', git: 'https://github.com/cmu-is-projects/materialize-form.git'
 gem 'best_in_place', '3.0.3'
