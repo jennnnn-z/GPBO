@@ -1,7 +1,9 @@
+  <%= render :partial => "partials/title_with_search", locals: {title: "Featured Items at GPBO"} %>
+
+
 <% if @featured_items.empty? %>
   <h4>There are no items in the system at this time.</h4>
 <% else %>
-  <%= render :partial => "partials/title_with_search", locals: {title: "Featured Items at GPBO"} %>
   <table class="striped highlight">
     <thead>
       <th>Name</th>
