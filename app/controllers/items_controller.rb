@@ -12,7 +12,7 @@
         @other_items = Item.for_category(cat).where(is_featured: false).where(active: true)
       else 
         @categories = Category.where(active: true)
-        @featured_items = Item.featured 
+        @featured_items = Item.featured.where(active: true)
         @other_items = Item.where(is_featured: false).where(active: true)
       end
     end
