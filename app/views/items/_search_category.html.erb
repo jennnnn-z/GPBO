@@ -1,0 +1,9 @@
+<div class="card"> 
+  <div class="card-content">
+    <h4>Find by Category</h4><br>
+    <%= link_to "All", items_path%><br>
+    <% for cat in @categories %>
+      <%= link_to "#{cat.name}", items_path(category: cat)%><br>
+    <%end%>
+  </div>
+</div>

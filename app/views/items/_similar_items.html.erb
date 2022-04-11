@@ -1,0 +1,8 @@
+<div class="card"> 
+  <div class="card-content">
+    <h4>Similar Items</h4><br>
+    <% for item in @similar_items %>
+      <%= link_to "#{item.name}", items_path(item)%><br>
+    <%end%>
+  </div>
+</div>

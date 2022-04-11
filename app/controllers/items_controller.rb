@@ -7,19 +7,19 @@
     def index  
       if params[:category].present?
         cat = Category.find(params[:category])
-        @categories = Item.for_category(cat).alphabetical
-        @featured_items = Item.for_category(cat).featured.paginate(page: params[:page]).per_page(15)
-        @other_items = Item.for_category(cat).where(is_featured: false)
+        @categories = Category.where(active: true)
+        @featured_items = Item.for_category(cat).featured.where(active: true)
+        @other_items = Item.for_category(cat).where(is_featured: false).where(active: true)
       else 
-        @categories = Item.alphabetical
+        @categories = Category.where(active: true)
         @featured_items = Item.featured 
-        @other_items = Item.where(is_featured: false)
+        @other_items = Item.where(is_featured: false).where(active: true)
       end
     end
 
     def show 
       @prices = @item.item_prices
-      @similar_items = Item.search(@item.name)
+      @similar_items = Item.for_category(@item.category).where(active: true).where.not(id: @item.id)
     end
 
     def toggle_active 

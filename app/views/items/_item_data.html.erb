@@ -1,0 +1,16 @@
+<div class="card">
+  <div class="card-content">
+    <h5><%= @item.name %> Details</h5><br />
+    
+    <%= @item.description %><br><br />
+
+    <b>Color: </b>
+    <%= @item.color%><br>
+
+    <b>Weight: </b>
+    <%= @item.weight%> lbs<br>
+
+    <b>Current Price: </b>
+    <%= number_to_currency @item.current_retail_price%>
+  </div>
+</div>
