@@ -1,0 +1,14 @@
+<div class="card">
+  <div class="card-content">
+    <h5>Addresses on file</h5><br />
+    
+
+    <% for address in @customer.addresses %>
+      <%=address.recipient%><br>
+      <%=address.street_1%><br />
+      <%=address.city%>, <%=address.state%> <%=address.zip%> <br><br>
+    <%end%>
+    
+    
+  </div>
+</div>

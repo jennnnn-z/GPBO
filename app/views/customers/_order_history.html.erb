@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-content">
+    <h5>Order History</h5><br />
+    <table >
+    <thead> 
+      <th>Date</th>
+      <th>Amount</th>
+    </thead>
+    <% for order in @customer.orders %>
+      <tr>
+        <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order)%></td>
+        <td><%= number_to_currency order.grand_total%>
+      </tr>
+    <%end%>
+    </table>
+
+  </div>
+</div>
