@@ -8,7 +8,7 @@ class OrdersController < ApplicationController
   def index 
     @pending_orders = Order.where(payment_receipt: nil)
     if current_user.role?(:customer)
-      @all_orders = Order.all
+      @all_orders = Order.for_customer(current_user.customer_id)
     elsif current_user.role?(:admin)
       @past_orders = Order.paid
     end

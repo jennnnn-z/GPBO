@@ -1,0 +1,33 @@
+<% if @featured_items.empty? %>
+  <h4>There are no items in the system at this time.</h4>
+<% else %>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Featured Items at GPBO"} %>
+  <table class="striped highlight">
+    <thead>
+      <th>Name</th>
+      <th>Description</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% for item in @featured_items %>
+      <tr>
+        <td><%= link_to "#{item.name}", item_path(item) %></td>
+        <td><%= item.description %></td>
+        <td class="align_center">
+          <%= link_to edit_item_path(item) do %>
+              <i class="material-icons">edit</i>
+          <% end %>
+          &nbsp;&nbsp;&nbsp;&nbsp; 
+          <%= link_to(item_path(item), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+              <i class="material-icons">delete</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br />
+<% end %>
+<p>&nbsp;</p>
+
+<p><strong>
+<%= link_to "Add a New Item", new_item_path, class: 'waves-effect waves-light btn' %> 
+</strong></p>

@@ -8,7 +8,7 @@
       if params[:category].present?
         cat = Category.find(params[:category])
         @categories = Item.for_category(cat).alphabetical
-        @featured_items = Item.for_category(cat).featured 
+        @featured_items = Item.for_category(cat).featured.paginate(page: params[:page]).per_page(15)
         @other_items = Item.for_category(cat).where(is_featured: false)
       else 
         @categories = Item.alphabetical

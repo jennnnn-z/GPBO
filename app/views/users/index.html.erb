@@ -1,0 +1,28 @@
+<% if @employees.empty? %>
+  <h4>There are no employees in the system at this time.</h4>
+<% else %>
+  <%= render :partial => "partials/title_with_search", locals: {title: "Employees at GPBO"} %>
+  <table class="striped highlight">
+    <thead>
+      <th>Employee Username</th>
+      <th>Role</th>
+      <th class="align_center">Options</th>
+    </thead>
+    <% for user in @employees %>
+      <tr>
+        <td><%= link_to "#{user.username}", user_path(user) %></td>
+        <td><%= user.role %></td>
+        <td class="align_center">
+          <%= link_to edit_user_path(user) do %>
+              <i class="material-icons">edit</i>
+          <% end %>
+          &nbsp;&nbsp;&nbsp;&nbsp; 
+          <%= link_to(user_path(user), method: :delete, data: { confirm: 'Are you sure you wish to delete this information?' }) do %>
+              <i class="material-icons">delete</i>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br />
+<% end %>

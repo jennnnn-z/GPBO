@@ -8,14 +8,14 @@ html {
 
 /********** TOPBAR & NAV ********/
 #topbar {
-  background-color: white;
+  background-color: #F28888;
   padding-top: 5px;
   margin-bottom: 0px;
   color: black;
 }
 
 #nav {
-  background-color: beige;
+  background-color: #F2CED5;
   height: 50px;
 }
 
@@ -51,16 +51,16 @@ html {
 /********** FOOTER ********/
 
 #footer {
-  background-color: black;
+  background-color: #F28888;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
-  color: yellow;
+  color: black;
   line-height: 2rem;
 }
 
 #footer a {
-  color: #ffd600;
+  color: darkblue;
 }
 
 /********** TABLES ********/
@@ -69,11 +69,11 @@ table.striped > tbody > tr:nth-child(odd) {
 }
 
 table.striped > tbody > tr:nth-child(even) {
-  background-color: #fffde7;
+  background-color: #ffddc0;
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #fff59d;
+  background-color: #F2A20C;
 }
 
 td.align_right {
@@ -94,7 +94,7 @@ th.align_center {
 
 /********** BUTTONS ********/
 .btn {
-  background-color: #ffd600;
+  background-color: #F28907;
   color: #000;
 }
 
