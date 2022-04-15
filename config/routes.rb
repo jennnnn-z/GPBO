@@ -20,7 +20,7 @@ Rails.application.routes.draw do
   resources :sessions 
   resources :users, except: [:show, :destroy]
 
-  get 'users/new', to: 'users#new', as: :signup
+  get 'customers/new', to: 'customers#new', as: :signup
   get 'user/edit', to: 'users#edit', as: :edit_current_user
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
