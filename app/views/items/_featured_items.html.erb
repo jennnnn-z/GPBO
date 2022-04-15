@@ -8,12 +8,18 @@
     <thead>
       <th>Name</th>
       <th>Price</th>
+      <% if can? :manage, Item %> 
+      <th>Inventory</th>
       <th class="align_center">Options</th>
+      <% end %>
+      
     </thead>
     <% for item in @featured_items %>
       <tr>
         <td><%= link_to "#{item.name}", item_path(item) %></td>
         <td><%= number_to_currency item.current_retail_price %></td>
+        <% if can? :manage, Item%> 
+        <td><%= item.inventory_level %>
         <td class="align_center">
           <%= link_to edit_item_path(item) do %>
               <i class="material-icons">edit</i>
@@ -23,6 +29,8 @@
               <i class="material-icons">delete</i>
           <% end %>
         </td>
+        <%end%>
+        
       </tr>
     <% end %>
   </table>

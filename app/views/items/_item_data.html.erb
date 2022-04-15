@@ -11,6 +11,28 @@
     <%= @item.weight%> lbs<br>
 
     <b>Current Price: </b>
-    <%= number_to_currency @item.current_retail_price%>
+    <%= number_to_currency @item.current_retail_price%><br>
+
+    <%if can? :manage, Item %>
+      <b>Inventory Level: </b>
+      <%= @item.inventory_level%><br>
+      <b>Reorder Level: </b>
+      <%= @item.reorder_level%><br><br>
+
+      <%= link_to "Add a New Price", new_item_price_path(item_id: @item.id) %>
+      <br>
+
+      <% if @item.active == true %>
+        <%= link_to "Make Inactive", toggle_active_path(id: @item.id), method: :patch %>
+      <% else %>
+        <%= link_to "Make Active", toggle_active_path(id: @item.id), method: :patch %>
+      <%end%>
+    <br>
+      <% if @item.is_featured == true %>
+        <%= link_to "Stop Featured", toggle_feature_path(id: @item.id), method: :patch %>
+      <% else %>
+        <%= link_to "Make Featured", toggle_feature_path(id: @item.id), method: :patch %>
+      <%end%>
+    <%end%>
   </div>
 </div>

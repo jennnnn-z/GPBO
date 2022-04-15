@@ -1,0 +1,22 @@
+<% if can? :manage, Item %>
+  <h5>Price History</h5>
+
+  <% if @item.item_prices.empty? %>
+    <h4>There is no price history at this time.</h4>
+  <% else %>
+    <table class="striped highlight">
+      <thead>
+        <th>Date</th>
+        <th>Price</th>
+      </thead>
+      <% for item in @item.item_prices %>
+        <tr>
+          <td><%=  item.start_date.strftime("%m/%d/%y") %></td>
+          <td><%= number_to_currency item.price %></td>
+
+        </tr>
+      <% end %>
+    </table>
+    <br />
+  <% end %>
+<%end%>

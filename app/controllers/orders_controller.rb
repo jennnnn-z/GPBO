@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  # include AppHelpers::Cart
+  include AppHelpers::Cart
   # include AppHelpers::Shipping
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :check_login
@@ -27,12 +27,12 @@ class OrdersController < ApplicationController
     @order = Order.new(order_params)
     @order.date = Date.current
     @order.products_total = 0
-    # @order.update(tax: 0)
     @order.shipping = 0
-    # @order.payment_receipt = ''
-    # @credit_card = CreditCard.new(params[:credit_card_number], params[:expiration_year], params[:expiration_month])
     if @order.save 
       flash[:notice] = "Thank you for ordering from GPBO."
+      @order.pay 
+      save_each_item_in_cart(@order)
+      clear_cart 
       redirect_to order_path(@order)
     else 
       redirect_to checkout_path
