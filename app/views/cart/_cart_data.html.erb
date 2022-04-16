@@ -3,9 +3,19 @@
     <h5>Your Cart</h5><br />
 
     
-    <b>Items in Cart:&nbsp;&nbsp;</b><br>
-      <%= @items_in_cart%><br /><br />
+    <table class="striped highlight">
+      <thead>
+        <th>Date</th>
+        <th>Price</th>
+      </thead>
+      <% for item in  @items_in_cart%>
+        <tr>
 
+          <td><%= number_to_currency item.price %></td>
+
+        </tr>
+      <% end %>
+    </table>
   
   </div>
 </div>

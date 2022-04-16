@@ -9,7 +9,7 @@
       user = User.authenticate(params[:username], params[:password])
       if user
         session[:user_id] = user.id
-        create_cart 
+        create_cart() 
         redirect_to home_path, notice: "Logged in!"
       else
         flash.now.alert = "Username and/or password is invalid"
@@ -19,7 +19,7 @@
     
     def destroy
       session[:user_id] = nil
-      destroy_cart
+      destroy_cart()
       redirect_to home_path, notice: "Logged out!"
     end
   end

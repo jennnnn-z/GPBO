@@ -1,8 +1,19 @@
 <div class="card"> 
   <div class="card-content">
     <h4>Similar Items</h4><br>
-    <% for item in @similar_items %>
+    <% for item in @similar_items.alphabetical %>
       <%= link_to "#{item.name}", items_path(item)%><br>
     <%end%>
   </div>
 </div>
+
+
+<% if current_user.role?(:customer) %>
+<div class="card">
+  <div class="card-content">
+    
+        <%= link_to "Add to Cart", add_item_path(@item.id), class: 'waves-effect waves-light btn' %>
+    
+  </div>
+</div>
+<% end %>
