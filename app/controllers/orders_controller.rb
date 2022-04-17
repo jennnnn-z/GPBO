@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
   end
 
   def new 
+    @order = Order.new
   end
 
   def create 
@@ -35,6 +36,7 @@ class OrdersController < ApplicationController
       clear_cart 
       redirect_to order_path(@order)
     else 
+      flash[:notice] = @order.errors
       redirect_to checkout_path
       # render action: 'new' 
     end

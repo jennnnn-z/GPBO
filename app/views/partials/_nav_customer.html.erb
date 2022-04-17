@@ -3,14 +3,15 @@
   <div class="container">
     <ul class="left hide-on-med-and-down">
       <li><%= link_to 'Items', items_path %></li>
-      <li><%= link_to 'My Account', customer_path(current_user.customer) %></li>
-      <li><%= link_to 'My Orders', orders_path %></li>
-      <li><%= link_to 'My Addresses', addresses_path %></li>
+      
 
     </ul>
     <ul class="right">
+      <li><%= link_to 'My Account', customer_path(current_user.customer) %></li>
+      <li><%= link_to 'My Orders', orders_path %></li>
       <li> 
-      <% if session[:cart].size > 0 %>
+      
+      <% if session[:cart].size > 0  %>
       <%= link_to "View Cart(#{session[:cart].size})", view_cart_path %>
       <%else%>
         <%= link_to 'View Cart', view_cart_path %>

@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  include AppHelpers::Cart
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_action :check_login, except: [:new, :create]
   authorize_resource
@@ -30,6 +31,7 @@ class CustomersController < ApplicationController
     else
       @customer.user_id = @user.id
       if @customer.save
+        create_cart
         flash[:notice] = "#{@customer.proper_name} was added to the system."
         session[:user_id] = @customer.user.id 
         redirect_to customer_path(@customer)
