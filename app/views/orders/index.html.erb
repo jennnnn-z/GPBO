@@ -3,18 +3,20 @@
   <%= render :partial => "partials/title_with_search", locals: {title: "Pending Orders"} %>
   <table class="striped highlight">
     <thead>
-      <th>Customer Name</th>
-      <th>Address</th>
       <th>Date</th>
-      <th>Products Total</th>
+      <th>Customer</th>
+      <th>Recipient</th>
+      <th>Item Count</th>
+      <th>Cost</th>
       <th class="align_center">Options</th>
     </thead>
     <% for order in @pending_orders %>
       <tr>
-        <td><%= link_to "#{order.customer.proper_name}", customer_path(order.customer) %></td>
-        <td><%= link_to "#{order.address.street_1}", address_path(order.address) %>  </td>
-        <td><%= order.date %> </td>
-        <td> <%= order.products_total%>  </td>
+        <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
+        <td><%= link_to "#{order.customer.name}", customer_path(order.customer) %></td>
+        <td><%= link_to "#{order.address.recipient}", address_path(order.address) %>  </td>
+        <td><%= order.order_items.count %> </td>
+        <td> <%= number_to_currency order.grand_total%>  </td>
         <td class="align_center">
           <%= link_to edit_order_path(order) do %>
               <i class="material-icons">edit</i>
@@ -30,24 +32,24 @@
   <br />
 <% end %>
 
-<% if @past_orders.nil? %>
-  
-<% else %>
+<% if !@past_orders.nil? %>
   <%= render :partial => "partials/title_with_search", locals: {title: "Past Orders"} %>
   <table class="striped highlight">
     <thead>
-      <th>Customer Name</th>
-      <th>Address</th>
       <th>Date</th>
-      <th>Products Total</th>
+      <th>Customer</th>
+      <th>Recipient</th>
+      <th>Item Count</th>
+      <th>Cost</th>
       <th class="align_center">Options</th>
     </thead>
     <% for order in @past_orders %>
       <tr>
-        <td><%= link_to "#{order.customer.proper_name}", customer_path(order.customer) %></td>
-        <td><%= link_to "#{order.address.street_1}", address_path(order.address) %>  </td>
-        <td><%= order.date %> </td>
-        <td> <%= order.products_total%>  </td>
+        <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
+        <td><%= link_to "#{order.customer.name}", customer_path(order.customer) %></td>
+        <td><%= link_to "#{order.address.recipient}", address_path(order.address) %>  </td>
+        <td><%= order.order_items.count %> </td>
+        <td> <%= number_to_currency order.grand_total%>  </td>
         <td class="align_center">
           <%= link_to edit_order_path(order) do %>
               <i class="material-icons">edit</i>
@@ -61,6 +63,27 @@
     <% end %>
   </table>
   <br />
+<% elsif !@all_orders.nil? %> 
+  <%= render :partial => "partials/title_with_search", locals: {title: "All Orders"} %>
+  <table class="striped highlight">
+    <thead>
+      <th>Date</th>
+      <th>Recipient</th>
+      <th>Item Count</th>
+      <th>Cost</th>
+    </thead>
+    <% for order in @all_orders %>
+      <tr>
+        <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
+        <td><%= order.address.recipient %>
+        <td><%= order.order_items.count %>
+        <td> <%= number_to_currency order.grand_total %>  </td>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <br />
+  
 <% end %>
 
 

@@ -1,0 +1,15 @@
+<div class="card">
+  <div class="card-content", style="text-align:right">
+    <h5 style="text-align:left">Order Cost Breakdown</h5><br />
+    
+    <b>Product Subtotal:</b>
+      <%= number_to_currency @order.products_total %><br /><br />
+
+    <b>Shipping:</b>
+    <%= number_to_currency @order.shipping%><br />
+<hr>
+<br />
+    <b>Grand Total:</b>
+    <%= number_to_currency @order.grand_total%><br /><br />
+  </div>
+</div>

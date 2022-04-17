@@ -1,17 +1,33 @@
 <div class="card">
   <div class="card-content">
-    <h5>Address details</h5><br />
+    <h5>Order Details</h5><br />
     
     <b>Date:</b>
       <%= @order.date.strftime("%B	%d, %Y") %><br /><br />
 
+    <% if current_user.role?(:admin) %>
     <b>Customer:</b>
       <%= @order.customer.proper_name%><br /><br />
+    <%end%>
 
-    <b>Recipient:</b>
+    <b>Recipient: </b>
     <%= @order.address.recipient%><br /><br />
 
-    <b>Grand Total:</b>
-    <%= number_to_currency @order.grand_total%><br /><br />
+    <b>Item Count: </b>
+    <%= @order.order_items.count %> Item<% if @order.order_items.count>1 %>s<%end%> <br><br>
+<hr>
+    <table class="striped highlight">
+    <thead>
+      <th>Item Name</th>
+      <th>Quantity</th>
+    </thead>
+    <% for order_item in @order.order_items %>
+      <tr>
+        <td><%= link_to "#{order_item.item.name}", item_path(order_item.item) %> </td>
+        <td><%= order_item.quantity %>
+        
+      </tr>
+    <% end %>
+  </table>
   </div>
 </div>

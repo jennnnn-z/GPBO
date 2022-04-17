@@ -16,7 +16,7 @@ class OrdersController < ApplicationController
   end
 
   def show 
-    @previous_orders = Order.for_customer(current_user.customer_id).paid 
+    @previous_orders = Order.paid 
     @order_items = @order.order_items
   end
 

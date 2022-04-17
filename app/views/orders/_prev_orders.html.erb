@@ -1,0 +1,31 @@
+<% if @previous_orders.for_customer(@order.customer_id).empty? %>
+<% else %>
+<div class="card">
+<div class="card-content">
+
+
+  <h5>Previous Orders</h5>
+  <table class="striped highlight">
+    <thead>
+      <th>Date</th>
+      <th>Recipient</th>
+      <th>Item Count</th>
+      <th>Cost</th>
+      
+    </thead>
+    <% for order in @previous_orders.for_customer(@order.customer_id).where.not(date:@order.date) %>
+      <tr>
+        <td><%= order.date.strftime("%m/%d/%y") %> </td>
+        <td><%= order.address.recipient %> </td>
+        <td><%= order.order_items.count %> Item<% if order.order_items.count>1 %>s<%end%>
+        </td>
+        <td> <%= number_to_currency order.grand_total%>  </td>
+        
+      </tr>
+    <% end %>
+  </table>
+  <br />
+
+</div>
+</div>
+<% end %>
