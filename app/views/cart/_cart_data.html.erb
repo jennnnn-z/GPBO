@@ -1,21 +1,20 @@
-<div class="card">
-  <div class="card-content">
-    <h5>Your Cart</h5><br />
+  <div class="card"> 
 
-    
+    <div class="card-content"> 
+    <h5>Your Cart </h5>
+
     <table class="striped highlight">
       <thead>
         <th>Date</th>
         <th>Price</th>
       </thead>
-      <% for item in  @items_in_cart%>
+      <% for order_item in @items_in_cart%>
         <tr>
 
-          <td><%= number_to_currency item.price %></td>
+          <td><%= order_item.item.name %></td>
 
         </tr>
       <% end %>
     </table>
-  
-  </div>
-</div>
+    </div> 
+    </div>

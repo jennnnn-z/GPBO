@@ -1,8 +1,4 @@
-<%# <%= render partial: "partials/show_structure", locals: {model_name: "cart", 
-                                                         object: @items_in_cart,
-                                                         primary: "cart_data", 
-                                                         secondary: nil,
-                                                         sidebar: nil} %> 
+
   <div class="card"> 
 
     <div class="card-content"> 
@@ -10,16 +6,21 @@
 
     <table class="striped highlight">
       <thead>
-        <th>Date</th>
+        <th>Item</th>
         <th>Price</th>
       </thead>
-      <% for item in  @items_in_cart%>
+      <% for order_item in @items_in_cart%>
         <tr>
 
-          <td><%= number_to_currency item.price %></td>
-
+          <td><%= order_item.item.name %></td>
+          <td><%= number_to_currency order_item.item.current_retail_price %>
         </tr>
       <% end %>
     </table>
     </div> 
     </div>
+    
+
+<p><strong>
+<%= link_to "Checkout", checkout_path, class: 'waves-effect waves-light btn' %> 
+</strong></p>

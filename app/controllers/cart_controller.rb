@@ -20,17 +20,14 @@ class CartController < ApplicationController
   def add_item 
     # @item = Item.find(params[:id])
     add_item_to_cart(params[:item_id])
-    # for @item in session[:cart] 
-      flash[:notice] = "#{params[:item_id]} is in cart"
-    # end
-    # flash[:notice] = "#{@item.name} was added to cart."
+    flash[:notice] = "#{Item.find(params[:item_id]).name}  was added to cart."
     redirect_to view_cart_path
   end
 
   def remove_item 
-    @item = Item.find(params[:item_id])
+    # @item = Item.find(params[:item_id])
     remove_item_from_cart(params[:id])
-    flash[:notice] = "#{@item.name} was removed from cart."
+    flash[:notice] = "#{Item.find(params[:item_id]).name} was removed from cart."
     redirect_to view_cart_path
   end
 
