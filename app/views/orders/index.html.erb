@@ -1,6 +1,6 @@
 <% if @pending_orders.empty? || !current_user.role?(:admin) %>
 <% else %>
-  <%= render :partial => "partials/title_with_search", locals: {title: "Pending Orders"} %>
+<h4>Pending Orders</h4>
   <table class="striped highlight">
     <thead>
       <th>Date</th>
@@ -33,7 +33,7 @@
 <% end %>
 
 <% if !@past_orders.nil? %>
-  <%= render :partial => "partials/title_with_search", locals: {title: "Past Orders"} %>
+  <h4>Past Orders</h4>
   <table class="striped highlight">
     <thead>
       <th>Date</th>
@@ -64,7 +64,7 @@
   </table>
   <br />
 <% elsif !@all_orders.nil? %> 
-  <%= render :partial => "partials/title_with_search", locals: {title: "All Orders"} %>
+  <h4>All Orders</h4>
   <table class="striped highlight">
     <thead>
       <th>Date</th>
@@ -87,9 +87,3 @@
 <% end %>
 
 
-
-<p>&nbsp;</p>
-
-<p><strong>
-<%= link_to "Add a New Order", new_order_path, class: 'waves-effect waves-light btn' %> 
-</strong></p>

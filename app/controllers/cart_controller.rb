@@ -7,7 +7,6 @@ class CartController < ApplicationController
   # authorize_resource
 
   def new 
-    create_cart
   end
 
   def show 
@@ -20,7 +19,7 @@ class CartController < ApplicationController
   def add_item 
     # @item = Item.find(params[:id])
     add_item_to_cart(params[:item_id])
-    flash[:notice] = "#{Item.find(params[:item_id]).name}  was added to cart."
+    flash[:notice] = "#{Item.find(params[:item_id]).name} was added to cart."
     redirect_to item_path(params[:item_id])
   end
 
