@@ -13,7 +13,7 @@
       <th>Cost</th>
       
     </thead>
-    <% for order in @previous_orders.for_customer(@order.customer_id).where.not(date:@order.date) %>
+    <% for order in @previous_orders.chronological.for_customer(@order.customer_id).where.not(date:@order.date) %>
       <tr>
         <td><%= order.date.strftime("%m/%d/%y") %> </td>
         <td><%= order.address.recipient %> </td>

@@ -8,7 +8,7 @@
       <th>Role</th>
       <th class="align_center">Options</th>
     </thead>
-    <% for user in @employees %>
+    <% for user in @employees.alphabetical %>
       <tr>
         <td><%= link_to "#{user.username}", user_path(user) %></td>
         <td><%= user.role %></td>

@@ -10,7 +10,7 @@
       <th>Cost</th>
       <th class="align_center">Options</th>
     </thead>
-    <% for order in @pending_orders %>
+    <% for order in @pending_orders.chronological %>
       <tr>
         <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
         <td><%= link_to "#{order.customer.name}", customer_path(order.customer) %></td>
@@ -43,7 +43,7 @@
       <th>Cost</th>
       <th class="align_center">Options</th>
     </thead>
-    <% for order in @past_orders %>
+    <% for order in @past_orders.chronological %>
       <tr>
         <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
         <td><%= link_to "#{order.customer.name}", customer_path(order.customer) %></td>
@@ -72,7 +72,7 @@
       <th>Item Count</th>
       <th>Cost</th>
     </thead>
-    <% for order in @all_orders %>
+    <% for order in @all_orders.chronological %>
       <tr>
         <td><%= link_to "#{order.date.strftime("%m/%d/%y")}", order_path(order.id) %> </td>
         <td><%= order.address.recipient %>

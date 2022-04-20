@@ -12,7 +12,7 @@
       <th class="align_center">Options</th>
       <% end %>
     </thead>
-    <% for item in @other_items %>
+    <% for item in @other_items.alphabetical %>
       <tr>
         <td><%= link_to "#{item.name}", item_path(item) %></td>
         <td><%= number_to_currency item.current_retail_price %></td>
