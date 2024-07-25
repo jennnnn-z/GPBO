@@ -189,6 +189,7 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
+    pg (0.21.0)
     populator (1.0.0)
     protobuf-cucumber (3.10.8)
       activesupport (>= 3.2)
@@ -273,7 +274,6 @@ GEM
       actionpack (>= 5.2)
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     sys-uname (1.2.2)
       ffi (~> 1.1)
     thor (1.2.1)
@@ -333,6 +333,7 @@ DEPENDENCIES
   minitest-rails (= 3.0.0)
   minitest-reporters (= 1.1.19)
   nokogiri (= 1.13.3)
+  pg (= 0.21.0)
   populator (= 1.0.0)
   puma (~> 3.11)
   rails (= 5.2.6)
@@ -344,7 +345,6 @@ DEPENDENCIES
   simplecov (= 0.21.2)
   spring (= 2.1.1)
   spring-watcher-listen (= 2.0.1)
-  sqlite3
   time_date_helpers (= 0.0.4)
   turbolinks (~> 5)
   tzinfo-data
